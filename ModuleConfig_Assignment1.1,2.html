@@ -1,0 +1,96 @@
+<html>
+   
+   <head>
+      <title>ModuleConfig_Assignment1.1,2</title>
+      <script src = "http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+      <script src = "http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular-route.min.js"></script>
+   </head>
+   
+   <body>
+      <h2>AngularJS Routing</h2>
+
+      <div ng-app = "mainApp">
+         <p><a href = "#addemployees">Add employees</a></p>
+         <p><a href = "#viewemployees">View employees</a></p>
+         <p><a href = "#deleteemployees">Delete employees</a></p>
+         <p><a href = "#updateemployees">Update employees</a></p>
+
+         <div ng-view></div>
+         
+         <script type = "text/ng-template" id = "addemployees.htm">
+            <h2> Add employees </h2>
+            {{message}}
+         </script>
+         
+         <script type = "text/ng-template" id = "viewemployees.htm">
+            <h2> View employees </h2>
+            {{message}}
+         </script>
+
+         <script type = "text/ng-template" id = "deleteemployees.htm">
+            <h2> Delete employees </h2>
+            {{message}}
+         </script>
+         
+         <script type = "text/ng-template" id = "updateemployees.htm">
+            <h2> Update employees </h2>
+            {{message}}
+		  </script>
+
+
+      </div>
+      
+      <script>
+         var mainApp = angular.module("mainApp", ['ngRoute']);
+         mainApp.config(['$routeProvider', function($routeProvider) {
+            $routeProvider.
+            
+            when('/addemployees', {
+               templateUrl: 'addemployees.htm',
+               controller: 'AddemployeesController'
+            }).
+            
+            when('/viewemployees', {
+               templateUrl: 'viewemployees.htm',
+               controller: 'ViewemployeesController'
+            }).
+            
+ 			when('/deleteemployees', {
+               templateUrl: 'deleteemployees.htm',
+               controller: 'DeleteemployeesController'
+            }).
+            
+            when('/updateemployees', {
+               templateUrl: 'updateemployees.htm',
+               controller: 'UpdateemployeesController'
+            }).
+
+
+            otherwise({
+               redirectTo: '/addStudent'
+            });
+         }]);
+         
+
+
+         mainApp.controller('AddemployeesController', function($scope) {
+            $scope.message = "This page will be used to display add employees form";
+         });
+         
+         mainApp.controller('ViewemployeesController', function($scope) {
+            $scope.message = "This page will be used to display all the employees";
+         });
+
+         mainApp.controller('DeleteemployeesController', function($scope) {
+            $scope.message = "This page will be used to delete employees form";
+         });
+         
+         mainApp.controller('UpdateemployeesController', function($scope) {
+            $scope.message = "This page will be used to update employees form";
+         });
+			
+			
+      </script>
+      
+   </body>
+</html>
